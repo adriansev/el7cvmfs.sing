@@ -1,2 +1,11 @@
-# el7cvmfs.sing
-Singularity image based on docker image, el7 + HEP_OSlibs + cvmfs
+# el7cvmfs
+Generic HEP oriented container to be used as wrapper for CVMFS distributed software
+
+The CVMFS base configuration is a merge of:   
+* cvmfs-config-default-1.7-1.noarch.rpm
+* cvmfs-config-egi-2.4-2.3.obs.el7.noarch.rpm
+* cvmfs-config-osg-2.4-1.osg35.el7.noarch.rpm
+   
+
+Given the Singularity requirements, the cvmfs mount can be done only from command line,   
+hence the need of wrapper scripts that will use these containers.   
