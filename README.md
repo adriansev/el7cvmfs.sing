@@ -1,3 +1,5 @@
+[![https://www.singularity-hub.org/static/img/hosted-singularity--hub-%23e32929.svg](https://www.singularity-hub.org/static/img/hosted-singularity--hub-%23e32929.svg)](https://singularity-hub.org/collections/4203)
+
 # el7cvmfs
 Generic HEP oriented container to be used as wrapper for CVMFS distributed software
 
