@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+NAME="el7cvmfs"
+if [[ "${1}" == "sandbox" ]]; then
+  U=$(id -nu)
+  G=$(id -ng)
+  shift
+  DO_SANDBOX="--sandbox --fix-perms"
+  NAME="${NAME}_sandbox"
+fi
+[[ -e "${NAME}" ]] && rm -f "${NAME}"
+
+sudo singularity build "${DO_SANDBOX}" "${NAME}" Singularity
+
+[[ -n "${DO_SANDBOX}" ]] && sudo chown -R ${U}:${G} "${NAME}"
+

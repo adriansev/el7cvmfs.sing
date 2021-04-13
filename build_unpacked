@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+IMG="/cvmfs/unpacked.cern.ch/registry.hub.docker.com/adriansevcenco/el7cvmfs:latest/"
+stat ${IMG} &> /dev/null || { echo "Could not access ${IMG}"; exit 1; }
+
+cp Singularity Singularity_unpacked
+sed -i "#^Bootstrap:#s#.*#Bootstrap: localimage#; #^From:#s#.*#From: ${IMG}#;" Singularity_unpacked
+
+NAME="el7cvmfs"
+if [[ "${1}" == "sandbox" ]]; then
+  U=$(id -nu)
+  G=$(id -ng)
+  shift
+  DO_SANDBOX="--sandbox --fix-perms"
+  NAME="${NAME}_sandbox"
+fi
+[[ -e "${NAME}" ]] && rm -f "${NAME}"
+
+sudo singularity build ${DO_SANDBOX} "${NAME}" Singularity_unpacked
+rm -f Singularity_unpacked
+
+[[ -n "${DO_SANDBOX}" ]] && sudo chown -R ${U}:${G} "${NAME}"
