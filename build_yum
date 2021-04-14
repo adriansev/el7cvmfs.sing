@@ -5,17 +5,20 @@ IMG="http://monitor.spacescience.ro/mirrors/centos/7/os/x86_64/"
 cp Singularity Singularity_yum
 sed -i "#^Bootstrap:#s#.*#Bootstrap: yum#; #^From:#s#.*#MirrorURL:: ${IMG}#;" Singularity_yum
 
+U=$(id -nu)
+G=$(id -ng)
+
 NAME="el7cvmfs_yum"
 if [[ "${1}" == "sandbox" ]]; then
-  U=$(id -nu)
-  G=$(id -ng)
   shift
   DO_SANDBOX="--sandbox --fix-perms"
   NAME="${NAME}_sandbox"
 fi
 [[ -e "${NAME}" ]] && rm -f "${NAME}"
 
-sudo singularity build ${DO_SANDBOX} "${NAME}" Singularity_yum
+sudo -E singularity build ${DO_SANDBOX} "${NAME}" Singularity_yum
 rm -f Singularity_yum
 
 [[ -n "${DO_SANDBOX}" ]] && sudo chown -R ${U}:${G} "${NAME}"
+sudo chown -R ${U}:${G} "${SINGULARITY_CACHEDIR:-${HOME}/.singularity/cache}"
+

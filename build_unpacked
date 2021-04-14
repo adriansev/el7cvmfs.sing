@@ -6,17 +6,19 @@ stat ${IMG} &> /dev/null || { echo "Could not access ${IMG}"; exit 1; }
 cp Singularity Singularity_unpacked
 sed -i "#^Bootstrap:#s#.*#Bootstrap: localimage#; #^From:#s#.*#From: ${IMG}#;" Singularity_unpacked
 
+U=$(id -nu)
+G=$(id -ng)
+
 NAME="el7cvmfs"
 if [[ "${1}" == "sandbox" ]]; then
-  U=$(id -nu)
-  G=$(id -ng)
   shift
   DO_SANDBOX="--sandbox --fix-perms"
   NAME="${NAME}_sandbox"
 fi
 [[ -e "${NAME}" ]] && rm -f "${NAME}"
 
-sudo singularity build ${DO_SANDBOX} "${NAME}" Singularity_unpacked
+#sudo -E singularity build ${DO_SANDBOX} "${NAME}" Singularity_unpacked
 rm -f Singularity_unpacked
 
 [[ -n "${DO_SANDBOX}" ]] && sudo chown -R ${U}:${G} "${NAME}"
+sudo chown -R ${U}:${G} "${SINGULARITY_CACHEDIR:-${HOME}/.singularity/cache}"

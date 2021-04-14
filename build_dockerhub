@@ -1,16 +1,17 @@
 #!/usr/bin/env bash
 
+U=$(id -nu)
+G=$(id -ng)
+
 NAME="el7cvmfs"
 if [[ "${1}" == "sandbox" ]]; then
-  U=$(id -nu)
-  G=$(id -ng)
   shift
   DO_SANDBOX="--sandbox --fix-perms"
   NAME="${NAME}_sandbox"
 fi
 [[ -e "${NAME}" ]] && rm -f "${NAME}"
 
-sudo singularity build "${DO_SANDBOX}" "${NAME}" Singularity
+sudo -E singularity build "${DO_SANDBOX}" "${NAME}" Singularity
 
 [[ -n "${DO_SANDBOX}" ]] && sudo chown -R ${U}:${G} "${NAME}"
-
+sudo chown -R ${U}:${G} "${SINGULARITY_CACHEDIR:-${HOME}/.singularity/cache}"
