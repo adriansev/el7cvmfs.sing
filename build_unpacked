@@ -17,7 +17,7 @@ if [[ "${1}" == "sandbox" ]]; then
 fi
 [[ -e "${NAME}" ]] && rm -f "${NAME}"
 
-#sudo -E singularity build ${DO_SANDBOX} "${NAME}" Singularity_unpacked
+sudo -E singularity build ${DO_SANDBOX} "${NAME}" Singularity_unpacked
 rm -f Singularity_unpacked
 
 [[ -n "${DO_SANDBOX}" ]] && sudo chown -R ${U}:${G} "${NAME}"
