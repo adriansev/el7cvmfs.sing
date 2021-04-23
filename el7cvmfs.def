@@ -18,4 +18,5 @@ The default is either run(exec) the argument list or just start bash (login shel
 #!/usr/bin/bash
 
 ARGS="${@}"
-[[ -n "${ARGS}" ]] && exec "${@}" || exec bash -l --
+[[ -n "${ARGS}" ]] && exec "${@}" || exec /usr/bin/bash -l
+
