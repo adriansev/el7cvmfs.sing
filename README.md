@@ -2,7 +2,7 @@
 
 # el7cvmfs
 Generic HEP oriented container to be used as wrapper for CVMFS distributed software   
-Built on the docker template adriansev/el7cvmfs.dock   
+Built on the docker template https://github.com/adriansev/el7cvmfs.dock   
 
 Given the Singularity requirements, the cvmfs fusemount can be done only from command line,   
-hence the need of wrapper scripts that will use this containers, see adriansev/cvmfs2go   
+hence the need of wrapper scripts that will use this containers, see https://github.com/adriansev/cvmfs2go   
