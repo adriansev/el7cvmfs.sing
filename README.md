@@ -1,4 +1,4 @@
-[OCI link](oras://registry.cern.ch/asevcenc/el7cvmfs:latest)
+Image found at : `oras://registry.cern.ch/asevcenc/el7cvmfs:latest`
 
 # el7cvmfs
 Generic HEP oriented container to be used as wrapper for CVMFS distributed software   
