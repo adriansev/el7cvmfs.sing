@@ -11,7 +11,8 @@ if [[ "${1}" == "sandbox" ]]; then
 fi
 [[ -e "${NAME}" ]] && rm -f "${NAME}"
 
-sudo -E singularity build "${DO_SANDBOX}" "${NAME}" Singularity
+sudo -E singularity build ${DO_SANDBOX} "${NAME}" Singularity
 
 [[ -n "${DO_SANDBOX}" ]] && sudo chown -R ${U}:${G} "${NAME}"
 sudo chown -R ${U}:${G} "${SINGULARITY_CACHEDIR:-${HOME}/.singularity/cache}"
+
