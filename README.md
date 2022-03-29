@@ -1,6 +1,6 @@
-content moved to:
-https://gitlab.cern.ch/asevcenc/el7cvmfs.dock
-https://github.com/adriansev/el7cvmfs.dock
+content moved to:  
+https://gitlab.cern.ch/asevcenc/el7cvmfs.dock  
+https://github.com/adriansev/el7cvmfs.dock  
 
 Image found at : `oras://registry.cern.ch/asevcenc/el7cvmfs:latest`
 
